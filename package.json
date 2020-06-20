@@ -1,5 +1,5 @@
 {
-  "proxy": "https://us-central1-socialape-6fd1c.cloudfunctions.net/api", 
+  "proxy": "https://us-central1-socialape-6fd1c.cloudfunctions.net/api",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "dayjs": "^1.8.28",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -35,5 +36,4 @@
       "last 1 safari version"
     ]
   }
-  
 }
