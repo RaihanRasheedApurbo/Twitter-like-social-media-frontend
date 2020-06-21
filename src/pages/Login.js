@@ -12,9 +12,14 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const styles = (theme) => ({
-  ...theme
-});
+// const styles = (theme) => ({
+//   ...theme
+// });
+const styles = (theme) => {
+  console.log("hye yoiwej")
+  console.log(theme)
+  return {...theme.spreadIt}
+}
 
 
 class Login extends Component {
@@ -44,6 +49,7 @@ class Login extends Component {
       .then((res) => {
         console.log(res);
         console.log("heyo");
+        localStorage.setItem('FBIdToken',`Bearer ${res.data.token}`)
         this.setState({
           loading: false,
         });
@@ -124,9 +130,9 @@ class Login extends Component {
               )}
             </Button>
             <br />
-            <smal>
+            <small>
               don't have an account? sign up <Link to="/signup">here</Link>
-            </smal>
+            </small>
           </form>
         </Grid>
         <Grid item sm />

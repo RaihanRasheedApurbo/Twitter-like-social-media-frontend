@@ -12,11 +12,42 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const styles = (theme) => ({
-  ...theme
-});
+// const styles = (theme) => ({
+//   ...theme
+// });
 
+const styles = (theme) => {
+  console.log("hye yoiwej")
+  console.log(theme)
+  return {...theme.spreadIt}
+}
 
+// const styles = {
+//   form: {
+//     textAlign: "center",
+//   },
+//   image: {
+//     margin: "20px auto 20px auto",
+//   },
+//   pageTitle: {
+//     margin: "10px auto 10px auto",
+//   },
+//   textField: {
+//     margin: "10px auto 10px auto",
+//   },
+//   button: {
+//     marginTop: 50,
+//     position: "relative",
+//   },
+//   customError: {
+//     color: "red",
+//     fontSize: "0.8rem",
+//     marginTop: 10,
+//   },
+//   progress: {
+//     position: "absolute",
+//   },
+// }
 
 
 class Signup extends Component {
@@ -25,6 +56,8 @@ class Signup extends Component {
     this.state = {
       email: "",
       password: "",
+      confirmPassword:"",
+      handle: "",
       loading: false,
       errors: {},
     };
@@ -35,16 +68,21 @@ class Signup extends Component {
       loading: true,
     });
     console.log("inside submitto");
-    const inputData = {
+    const newUserData = {
       email: this.state.email,
       password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+      userHandle: this.state.handle,
+
     };
-    console.log(inputData.email);
-    console.log(inputData.password);
+    console.log(newUserData)
+    console.log(newUserData.email);
+    console.log(newUserData.password);
     axios
-      .post("/login", inputData)
+      .post("/signup", newUserData)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        localStorage.setItem('FBIdToken',`Bearer ${res.data.token}`)
         console.log("heyo");
         this.setState({
           loading: false,
@@ -81,7 +119,7 @@ class Signup extends Component {
         <Grid item sm>
           <img src={Logo} alt="monkey" className={classes.image} />
           <Typography variant="h2" className={classes.pageTitle}>
-            Login
+            SignUp
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
@@ -108,6 +146,30 @@ class Signup extends Component {
               onChange={this.handleChange}
               fullWidth
             ></TextField>
+            <TextField
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              label="Confirm Password"
+              className={classes.textField}
+              helperText={errors.confirmPassword}
+              error={errors.confirmPassword ? true : false}
+              value={this.state.confirmPassword }
+              onChange={this.handleChange}
+              fullWidth
+            ></TextField>
+            <TextField
+              id="handle"
+              name="handle"
+              type="text"
+              label="Handle"
+              className={classes.textField}
+              helperText={errors.handle}
+              error={errors.handle ? true : false}
+              value={this.state.handle}
+              onChange={this.handleChange}
+              fullWidth
+            ></TextField>
             {errors.error && (
               <Typography variant="body2" className={classes.customError}>
                 {errors.error}
@@ -120,15 +182,15 @@ class Signup extends Component {
               className={classes.button}
               disabled={loading}
             >
-              LOGIN
+              SignUp
               {loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
             <br />
-            <smal>
-              don't have an account? sign up <Link to="/signup">here</Link>
-            </smal>
+            <small>
+              Already have an account? login <Link to="/login ">here</Link>
+            </small>
           </form>
         </Grid>
         <Grid item sm />
