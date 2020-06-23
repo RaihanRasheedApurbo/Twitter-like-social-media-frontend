@@ -20,7 +20,7 @@ export default function(state = initialState,action){
                 errors: null
             }
         
-        case LOADIN_UI:
+        case LOADING_UI:
             return {
                 ...state,
                 loading: true

@@ -23,10 +23,17 @@ import AuthRoute from "./util/AuthRoute";
 //redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import {SET_AUTHENTICATED, SET_UNAUTHENTICATED} from './redux/types'
+import { logoutUser, getUserData } from './redux/actions/userAction'
+import Axios from "axios";
+
+
+
+
 
 const theme = createMuiTheme(themeDefinition);
 
-let authenticated;
+
 const token = localStorage.FBIdToken;
 if (token) {
   console.log("hi");
@@ -34,16 +41,19 @@ if (token) {
   console.log("hey tokennnnn");
   console.log(decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logoutUser())
     window.location.href = "/login";
-    authenticated = false;
+   
   } else {
-    authenticated = true;
+    store.dispatch({type: SET_AUTHENTICATED})
+    Axios.defaults.headers.common['Authorization'] = token
+    store.dispatch(getUserData())
   }
 }
-// else {
-//   console.log("hey");
-//   authenticated = false;
-// }
+else {
+  console.log("hey");
+  store.dispatch({type: SET_UNAUTHENTICATED})
+}
 
 function App() {
   //console.log('app is called')
@@ -60,13 +70,13 @@ function App() {
                   exact
                   path="/login"
                   component={Login}
-                  authenticated={authenticated}
+                  
                 />
                 <AuthRoute
                   exact
                   path="/signup"
                   component={Signup}
-                  authenticated={authenticated}
+                  
                 />
               </Switch>
             </div>

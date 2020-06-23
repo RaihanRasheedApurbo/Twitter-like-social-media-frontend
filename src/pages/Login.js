@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import Logo from "../images/images.png";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 //MUI stuff
@@ -34,6 +33,14 @@ class Login extends Component {
       errors: {},
     };
   }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.UI.errors){
+      this.setState({errors: nextProps.UI.errors})
+    }
+    
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     
