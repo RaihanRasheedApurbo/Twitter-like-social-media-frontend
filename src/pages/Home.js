@@ -3,6 +3,7 @@ import axios from 'axios'
 
 //component
 import Scream from '../components/Scream'
+import Profile from '../components/Profile'
 
 
 //mui export
@@ -57,7 +58,7 @@ export class Home extends Component {
         </Grid>
 
         <Grid item sm={4} xs={12}>
-          <p> profile</p>
+          <Profile/>
         </Grid>
       </Grid>
     );
