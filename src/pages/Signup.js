@@ -189,7 +189,7 @@ class Signup extends Component {
             </Button>
             <br />
             <small>
-              Already have an account? login <Link to="/login ">here</Link>
+              Already have an account? login <Link to="/login">here</Link>
             </small>
           </form>
         </Grid>

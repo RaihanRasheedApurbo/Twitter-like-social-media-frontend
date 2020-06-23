@@ -12,6 +12,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+//redux stuff
+import {connect} from 'react-redux'
+import {loginUser} from '../redux/actions/userAction'
 // const styles = (theme) => ({
 //   ...theme
 // });
@@ -28,15 +31,12 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      loading: false,
       errors: {},
     };
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({
-      loading: true,
-    });
+    
     console.log("inside submitto");
     const inputData = {
       email: this.state.email,
@@ -44,31 +44,12 @@ class Login extends Component {
     };
     console.log(inputData.email);
     console.log(inputData.password);
-    axios
-      .post("/login", inputData)
-      .then((res) => {
-        console.log(res);
-        console.log("heyo");
-        localStorage.setItem('FBIdToken',`Bearer ${res.data.token}`)
-        this.setState({
-          loading: false,
-        });
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        console.log("yoyoyoy");
-        console.log(err.response.data);
-        console.log(err);
-        console.log(err.response.data.password);
-        this.setState({
-          errors: err.response.data,
-          loading: false,
-        });
-        console.log(this.state.errors);
-      });
+    this.props.loginUser(inputData,this.props.history)
+    // function loginuser
   };
 
   handleChange = (event) => {
+    console.log('hey inside login handle change')
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -77,8 +58,8 @@ class Login extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { errors, loading } = this.state;
+    const { classes, UI: {loading} } = this.props;
+    const { errors } = this.state;
     return (
       <Grid container className={classes.form}>
         <Grid item sm />
@@ -131,7 +112,7 @@ class Login extends Component {
             </Button>
             <br />
             <small>
-              don't have an account? sign up <Link to="/signup">here</Link>
+              don't have an account? sign up {this.state.loading}  <Link to="/signup">here</Link>
             </small>
           </form>
         </Grid>
@@ -146,6 +127,19 @@ class Login extends Component {
 
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  user:PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  UI: state.UI
+})
+
+const mapActionsToProps = {
+  loginUser 
+}
+
+export default connect( mapStateToProps, mapActionsToProps ) (withStyles(styles)(Login));
