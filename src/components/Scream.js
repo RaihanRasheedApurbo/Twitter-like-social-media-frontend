@@ -152,6 +152,7 @@ class Scream extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} Comments</span>
+          {deleteButton}
         </CardContent>
       </Card>
     );
