@@ -7,9 +7,9 @@ import IconButton from '@material-ui/core/IconButton'
 export default function MyButton({children, onClick, btnClassName, tipClassName, tip}) {
     return (
         <Tooltip title={tip} className={tipClassName} placement="top">
-            <iconButton onClick={onClick} className={btnClassName}>
+            <IconButton onClick={onClick} className={btnClassName}>
                 {children}
-            </iconButton>
+            </IconButton>
         </Tooltip>
         
     )
