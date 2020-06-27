@@ -40,6 +40,7 @@ export class Home extends Component {
 
       // }
       recentScreamMarkup = screams.map(scream => {
+       // console.log(scream)
       return <Scream key={scream.screamId} scream={scream}/>
       })
       // console.log(typeof(recentScreamMarkup))

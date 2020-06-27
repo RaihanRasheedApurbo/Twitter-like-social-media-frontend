@@ -3,8 +3,10 @@ import {
   LIKE_SCREAM,
   UNLIKE_SCREAM,
   LOADING_DATA,
-  DELETE_SCREAM
+  DELETE_SCREAM,
+  POST_SCREAM
 } from "../types";
+import { IconButton } from "@material-ui/core";
 
 const initialState = {
   screams: [],
@@ -29,18 +31,36 @@ export default function (state = initialState, actions) {
     case UNLIKE_SCREAM:
       let index = state.screams.findIndex(
         (scream) => scream.screamId === actions.payload.screamId
-      );
+      ); 
       state.screams[index] = actions.payload;
       return {
         ...state,
       };
     case DELETE_SCREAM:
-      index = state.screams.findIndex(scream => scream.screamId === actions.payload)
-      state.screams.splice(index, 1)
+      let index1 = -1;
+      for(let i=0;i<state.screams.length;i++)
+      {
+        let scream = state.screams[i]
+        if(scream.screamId===actions.payload){
+          index1 = i
+          break
+        }
+      }
+      //index = state.screams.findIndex(scream => scream.screamId === actions.payload)
+      //console.log(index1)
+      //console.log(state.screams[index1])
+      state.screams.splice(index1, 1)
       return  {
         ...state
       }
-       
+    case POST_SCREAM:
+      return {
+        ...state,
+        screams: [
+          actions.payload,
+          ...state.screams,
+        ]
+      }
     default:
       return state;
   }

@@ -42,10 +42,10 @@ const styles = {
 class Scream extends Component {
   likedScream = () => {
 
-    console.log('hey inside likedScream')
-    console.log(this.props.user.likes)
+    //console.log('hey inside likedScream')
     //console.log(this.props.user.likes)
-    console.log(this.props.scream.screamId)
+    //console.log(this.props.user.likes)
+    //console.log(this.props.scream.screamId)
     
     if (
       this.props.user.likes &&
@@ -53,10 +53,10 @@ class Scream extends Component {
         (like) => like.screamId === this.props.scream.screamId
       )
     ) {
-      console.log('true')
+      //console.log('true')
       return true;
     } else {
-      console.log('false')
+      //console.log('false')
       return false;
     }
   };
@@ -97,6 +97,7 @@ class Scream extends Component {
         },
       }
     } = this.props;
+    //console.log(`here is scream id: ${screamId}`)
 
   
 
