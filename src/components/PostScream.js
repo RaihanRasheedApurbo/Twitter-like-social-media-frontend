@@ -24,17 +24,16 @@ import shadows from "@material-ui/core/styles/shadows";
 const styles = (theme) => ({
   ...theme.spreadIt,
   submitButton: {
-      position: 'relative'
+    position: "relative",
   },
   progressSpinner: {
-      position: 'absolute'
+    position: "absolute",
   },
   closeButton: {
-      position: 'absolute',
-      left: '90%',
-      top: '10%',
-  }
-
+    position: "absolute",
+    left: "90%",
+    top: "10%",
+  },
 });
 
 class PostScream extends Component {
@@ -44,50 +43,55 @@ class PostScream extends Component {
     errors: {},
   };
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.UI.errors){
+  componentWillReceiveProps(nextProps) {
+    //console.log("recivine props");
+    //console.log(nextProps);
+    if (nextProps.UI.errors) {
       this.setState({
-        errors:nextProps.UI.errors
-      })
-    }else{
-      this.setState({
-        open: false
-      })
+        errors: nextProps.UI.errors,
+      });
     }
+
+    if (!nextProps.UI.errors && !nextProps.UI.loading) {
+      this.setState({
+        body: "",
+      });
+      this.handleClose();
+    }
+
+    // else{
+    //   this.setState({
+    //     open: false
+    //   })
+    // }
   }
-
-
 
   handleOpen = () => {
     this.setState({ open: true });
   };
   handleClose = () => {
-    this.setState({ open: false , errors: {}});
+    this.setState({ open: false, errors: {} });
   };
   handleChange = (event) => {
-      //console.log(event.target.name)
-      //console.log(event.target.value)
-      this.setState({
-          [event.target.name]: event.target.value
-      })
-  }
+    //console.log(event.target.name)
+    //console.log(event.target.value)
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
   handleSubmit = (event) => {
-      event.preventDefault()
-      this.props.postScream({body: this.state.body})
-      
-  }
+    event.preventDefault();
+    this.props.postScream({ body: this.state.body });
+    
+  };
 
   render() {
-    const { errors } = this.state
+    const { errors } = this.state;
 
     const {
       classes,
-      UI: { loading,},
-      
+      UI: { loading },
     } = this.props;
-    
-    
-    
 
     return (
       <Fragment>
