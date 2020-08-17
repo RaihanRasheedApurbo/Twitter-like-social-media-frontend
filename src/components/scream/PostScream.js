@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 //redux
 import { connect } from "react-redux";
-import { postScream, clearErrors } from "../redux/actions/dataAction";
+import { postScream, clearErrors } from "../../redux/actions/dataAction";
 
 //mui stuffs
 
@@ -18,7 +18,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 //util
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import shadows from "@material-ui/core/styles/shadows";
 
 const styles = (theme) => ({

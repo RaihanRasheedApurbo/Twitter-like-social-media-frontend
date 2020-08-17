@@ -3,8 +3,8 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 
 //component
-import Scream from '../components/Scream'
-import Profile from '../components/Profile'
+import Scream from '../components/scream/Scream'
+import Profile from '../components/profile/Profile'
 
 
 //mui export

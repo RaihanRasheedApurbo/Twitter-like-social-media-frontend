@@ -8,7 +8,7 @@ import EditDetails from "./EditDetails";
 
 //redux stuff
 import { connect } from "react-redux";
-import { logoutUser, uploadImage } from "../redux/actions/userAction";
+import { logoutUser, uploadImage } from "../../redux/actions/userAction";
 
 //mui stuffs
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -21,7 +21,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Tooltip from "@material-ui/core/Tooltip";
 
 //util
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 
 //import Typography from '@material-ui/core/Typography'
 

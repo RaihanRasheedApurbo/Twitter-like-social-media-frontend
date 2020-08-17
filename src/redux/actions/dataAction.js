@@ -18,10 +18,10 @@ export const getScreams = () => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios
     .get("/screams")
-    .then((res) => {
+    .then(res => {
       dispatch({
         type: SET_SCREAMS,
-        payload: res.data,
+        payload: res.data
       });
     })
     .catch((err) => {
@@ -36,13 +36,19 @@ export const getScream = (screamId) => (dispatch) => {
   dispatch({type: LOADING_UI})
   axios.get(`/scream/${screamId}`)
     .then(res => {
+      console.log('inside axios');
+      console.log(res.data)
       dispatch({
         type: SET_SCREAM,
         payload: res.data
       })
       dispatch({type: STOP_LOADING_UI})
+      console.log('stop loading ui dispatched')
     })
-    .catch( err => console.log(err))
+    .catch( err => {
+      console.log('inside catch')
+
+    })
 }
 
 //post a scream

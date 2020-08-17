@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 //components
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 
 //util
 import AuthRoute from "./util/AuthRoute";

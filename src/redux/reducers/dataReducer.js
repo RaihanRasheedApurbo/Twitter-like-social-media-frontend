@@ -1,5 +1,6 @@
 import {
   SET_SCREAMS,
+  SET_SCREAM,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
   LOADING_DATA,
@@ -27,12 +28,18 @@ export default function (state = initialState, actions) {
         screams: actions.payload,
         loading: false,
       };
+    case SET_SCREAM:
+      return {
+        ...state,
+        scream: actions.payload,
+      }
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
       let index = state.screams.findIndex(
         (scream) => scream.screamId === actions.payload.screamId
       ); 
       state.screams[index] = actions.payload;
+      state.scream = actions.payload;
       return {
         ...state,
       };

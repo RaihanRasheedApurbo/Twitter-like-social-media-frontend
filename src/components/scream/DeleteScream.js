@@ -3,7 +3,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 
 //util
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 
 // MUI Stuff
 import Button from '@material-ui/core/Button'
@@ -14,7 +14,7 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline'
 
 //redux stuffs
 import { connect } from "react-redux";
-import { deleteScream } from "../redux/actions/dataAction";
+import { deleteScream } from "../../redux/actions/dataAction";
 
 const styles = {
 
