@@ -5,7 +5,8 @@ import {
   UNLIKE_SCREAM,
   LOADING_DATA,
   DELETE_SCREAM,
-  POST_SCREAM
+  POST_SCREAM,
+  SUBMIT_COMMENT
 } from "../types";
 import { IconButton } from "@material-ui/core";
 
@@ -68,6 +69,15 @@ export default function (state = initialState, actions) {
           ...state.screams,
         ]
       }
+    
+      case SUBMIT_COMMENT:
+        return {
+          ...state,
+          scream: {
+            ...state.scream,
+            comments: [actions.payload,...state.scream.comments]
+          }
+        }
     default:
       return state;
   }
