@@ -13,6 +13,7 @@ import themeDefinition from "./util/theme";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import User from "./pages/User"
 
 //components
 import Navbar from "./components/layout/Navbar";
@@ -78,6 +79,7 @@ function App() {
                   component={Signup}
                   
                 />
+                <Route exact path="/user/:handle" component={User}/>
               </Switch>
             </div>
           </Router>
